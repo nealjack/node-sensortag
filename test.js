@@ -4,7 +4,7 @@ var async = require('async');
 
 var SensorTag = require('./index');
 
-var USE_READ = true;
+var USE_READ = false;
 
 SensorTag.discover(function(sensorTag) {
   console.log('discovered: ' + sensorTag);
@@ -18,6 +18,10 @@ SensorTag.discover(function(sensorTag) {
       function(callback) {
         console.log('connectAndSetUp');
         sensorTag.connectAndSetUp(callback);
+      },
+      function(callback) {
+        console.log('setConnectionParameters');
+        sensorTag.setConnectionParameters(callback);
       },
       function(callback) {
         console.log('readDeviceName');

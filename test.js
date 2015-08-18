@@ -5,6 +5,8 @@ var async = require('async');
 var SensorTag = require('./index');
 
 var USE_READ = false;
+var OAD_CONN_INTERVAL                       = 6;
+var OAD_SUPERVISION_TIMEOUT                 = 50;
 
 SensorTag.discover(function(sensorTag) {
   console.log('discovered: ' + sensorTag);
@@ -21,7 +23,7 @@ SensorTag.discover(function(sensorTag) {
       },
       function(callback) {
         console.log('setConnectionParameters');
-        sensorTag.setConnectionParameters(callback);
+        sensorTag.setConnectionParameters(OAD_CONN_INTERVAL, OAD_SUPERVISION_TIMEOUT, callback);
       },
       function(callback) {
         console.log('readDeviceName');
